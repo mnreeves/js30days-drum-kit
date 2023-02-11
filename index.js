@@ -1,94 +1,29 @@
 document.addEventListener("keypress", function onKeypress(evt) {
-  
-  if (evt.keyCode === 97) {
-    const divElement = document.getElementById('key-a');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("clap").play();
+  const mapKeyCodesAndSound = [
+    { key: 97, soundName: "clap", keyId: 'key-a' },
+    { key: 115, soundName: "hihat", keyId: 'key-s' },
+    { key: 100, soundName: "kick", keyId: 'key-d' },
+    { key: 102, soundName: "openhat", keyId: 'key-f' },
+    { key: 103, soundName: "boom", keyId: 'key-g' },
+    { key: 104, soundName: "ride", keyId: 'key-h' },
+    { key: 106, soundName: "snare", keyId: 'key-j' },
+    { key: 107, soundName: "tom", keyId: 'key-k' },
+    { key: 108, soundName: "tink", keyId: 'key-l' },
+  ];
 
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
+  const data = mapKeyCodesAndSound.filter(item => item.key === evt.keyCode);
+  if (data.length === 0) return;
 
-  if (evt.keyCode === 115) {
-    const divElement = document.getElementById('key-s');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("hihat").play();
+  const { soundName, keyId } = data[0];
+  const divElement = document.getElementById(keyId);
+  if (divElement === null) return;
 
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
+  divElement.style.backgroundColor = "rebeccapurple";
+  document.getElementById(soundName).play();
 
-  if (evt.keyCode === 100) {
-    const divElement = document.getElementById('key-d');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("kick").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-
-  if (evt.keyCode === 102) {
-    const divElement = document.getElementById('key-f');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("openhat").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-
-  if (evt.keyCode === 103) {
-    const divElement = document.getElementById('key-g');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("boom").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-
-  if (evt.keyCode === 104) {
-    const divElement = document.getElementById('key-h');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("ride").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-
-  if (evt.keyCode === 106) {
-    const divElement = document.getElementById('key-j');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("snare").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-
-  if (evt.keyCode === 107) {
-    const divElement = document.getElementById('key-k');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("tom").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-  
-  if (evt.keyCode === 108) {
-    const divElement = document.getElementById('key-l');
-    divElement.style.backgroundColor = "rebeccapurple";
-    document.getElementById("tink").play();
-
-    document.addEventListener("keyup", function onKeyup() {
-      divElement.style.backgroundColor = "black";      
-    }, false);
-  }
-  
+  // return to default color
+  document.addEventListener("keyup", function onKeyup() {
+    divElement.style.backgroundColor = "black";
+  }, false);
 }, false);
 
